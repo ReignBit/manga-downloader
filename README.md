@@ -30,6 +30,6 @@ This has only been tested and made for Windows. Since this program uses curses i
 
 
 ## TODO / Wishlist
-[] Fix download sizes being shown incorrectly
-[] Add non-curses version
-[] Add more website support?
+[ ] Fix download sizes being shown incorrectly
+[ ] Add non-curses version
+[ ] Add more website support?
