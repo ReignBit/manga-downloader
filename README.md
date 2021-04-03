@@ -27,3 +27,9 @@ Once manga-dl has finished downloading your mangas, it will have created a folde
 
 ## Troubleshooting
 This has only been tested and made for Windows. Since this program uses curses it is dependant on windows-curses for Windows operation. You may try removing this dependancy from `requirements.txt` and instead installing curses for Linux. YMMV
+
+
+## TODO / Wishlist
+[] Fix download sizes being shown incorrectly
+[] Add non-curses version
+[] Add more website support?
