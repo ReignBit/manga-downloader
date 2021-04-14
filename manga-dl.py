@@ -28,6 +28,7 @@ MAX_VOLUME = 200  # Volume to search up to
 WORKER_COUNT = 10  # How many workers to use
 REGEX = r"https:\/\/cm.blazefast.co\/[a-z0-9]{2}\/[a-z0-9]{2}\/[a-z0-9]{32}.jpg"  # CDN link
 URL = ""  # Manganelo link
+SLOW_MODE = False
 # ********************************
 
 pattern = re.compile(REGEX, re.IGNORECASE)
@@ -70,9 +71,11 @@ def create_workers(batch):
 
 
 def pre_download_size_calc(url):
-    data = requests.head(url)
-    if data.status_code == 200:
-        return int(data.headers['Content-Length'])
+    if not SLOW_MODE:
+        data = requests.head(url)
+        if data.status_code == 200:
+            return int(data.headers['Content-Length'])
+        return 0
     return 0
 
 
@@ -231,6 +234,7 @@ if __name__ == "__main__":
     parser.add_argument("--chapters", "-c", type=int, default=100, help="Amount of chapters/volumes to attempt to download.")
     parser.add_argument("--cdnregex", "-r", type=str, help="Change the CDN regex used to match image urls.")
     parser.add_argument("--manganame", "-m", default="Unnamed Manga", help="Name of the folder to store downloaded chapters.")
+    parser.add_argument("--noinspect", "-n", help="Disables pre-fetching sizes for slow internet connections.")
     args = parser.parse_args()
 
     URL = args.mangaurl
@@ -238,9 +242,12 @@ if __name__ == "__main__":
     MAX_VOLUME = args.chapters if args.chapters else 200
     REGEX = args.cdnregex if args.cdnregex else r"https:\/\/cm.blazefast.co\/[a-z0-9]{2}\/[a-z0-9]{2}\/[a-z0-9]{32}.jpg"
     ANIME_NAME = args.manganame if args.manganame else "Unnamed Manga"
+    SLOW_MODE = args.noinspect if args.noinspect else False
 
     scr.addstr(0, 0, "============Manga-Downloader===========")
     scr.addstr(1, 0, "    Saving as  : {}".format(ANIME_NAME))
+    if SLOW_MODE:
+        scr.addstr(2, 0, "    ! No Pre-Download Sizes !")
     scr.addstr(4, 0, "============Worker Progress=============")
 
     try:
