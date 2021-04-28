@@ -9,6 +9,11 @@ To run, either build the executable file using `setup.py`, or run the following 
 - `pip install -r requirements.txt`
 - `python manga-dl.py -h`
 
+## BeautifulSoup Edition
+I have rewritten the downloader to use an actual html parser instead of using Regex. To use this new version, run the command:
+- `python manga-dl-bsoup.py URL FOLDER_TO_DOWNLOAD_TO MANGA_NAME`
+This version is yet to have worker and chapter customization, but is soon to be added.
+
 ## Options
 All options and arguments are described with the -h command, but are listed here for convenience.
 For quick download, you can run the command:<br>
