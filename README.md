@@ -12,6 +12,7 @@ To run, either build the executable file using `setup.py`, or run the following 
 ## BeautifulSoup Edition
 I have rewritten the downloader to use an actual html parser instead of using Regex. To use this new version, run the command:
 - `python manga-dl-bsoup.py URL FOLDER_TO_DOWNLOAD_TO MANGA_NAME`
+
 This version is yet to have worker and chapter customization, but is soon to be added.
 
 ## Options
