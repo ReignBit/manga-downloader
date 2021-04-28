@@ -234,7 +234,7 @@ if __name__ == "__main__":
     parser.add_argument("--chapters", "-c", type=int, default=100, help="Amount of chapters/volumes to attempt to download.")
     parser.add_argument("--cdnregex", "-r", type=str, help="Change the CDN regex used to match image urls.")
     parser.add_argument("--manganame", "-m", default="Unnamed Manga", help="Name of the folder to store downloaded chapters.")
-    parser.add_argument("--noinspect", "-n", help="Disables pre-fetching sizes for slow internet connections.")
+    parser.add_argument("--noinspect", "-n", action='store_true', help="Disables pre-fetching sizes for slow internet connections.")
     args = parser.parse_args()
 
     URL = args.mangaurl
